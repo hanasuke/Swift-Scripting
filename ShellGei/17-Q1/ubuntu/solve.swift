@@ -13,9 +13,9 @@ while true {
 
     if ( data[parseData[0]] == nil ) {
         data[parseData[0]] = [String(parseData[1])]
+    } else {
+        data[parseData[0]]!.append(String(parseData[1]))
     }
-
-    data[parseData[0]]!.append(String(parseData[1]))
 }
 
 for (key, values) in data {
