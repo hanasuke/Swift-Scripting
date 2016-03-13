@@ -24,12 +24,18 @@ func outputJSON(data:Dictionary<String, Array<String>>) {
 
 var data: Dictionary< String, Array<String> > = [:]
 
-while true {
-    var line = readLine()!
+let args = Process.arguments.suffixFrom(0)
+let option = args[1]
+let filePath = args[2]
+
+let fileData = try! NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+
+fileData.enumerateLinesUsingBlock { (line, stop) -> () in
     var parseData = line.componentsSeparatedByString(" ")
 
-    if ( line == "" ) {
-        break
+    // 空行への対応
+    if parseData.count < 2 {
+        return
     }
 
     if ( data[parseData[0]] == nil ) {
@@ -37,8 +43,15 @@ while true {
     } else {
         data[parseData[0]]!.append(String(parseData[1]))
     }
-
 }
 
-outputText(data)
-outputJSON(data)
+switch option {
+case "-json" :
+    outputJSON(data)
+    break
+case "-text" :
+    outputText(data)
+    break
+default :
+    print("argument error")
+}
