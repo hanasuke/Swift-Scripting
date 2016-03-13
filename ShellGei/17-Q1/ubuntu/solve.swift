@@ -19,8 +19,8 @@ func outputText(data: Dictionary<String, Array<String>>) {
 }
 
 func outputJSON(data:Dictionary<String, Array<String>>) {
-    //let jsonData = try! NSJSONSerialization.dataWithJSONObject(data, options: [])
-    //print(NSString(data: jsonData, encoding:NSUTF8StringEncoding) as! String)
+    let jsonData = try! NSJSONSerialization.dataWithJSONObject(data, options: [])
+    print(NSString(data: jsonData, encoding:NSUTF8StringEncoding) as! String)
 }
 
 var data: Dictionary< String, Array<String> > = [:]
